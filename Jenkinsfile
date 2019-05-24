@@ -2,7 +2,6 @@
 
 pipeline {
     agent {
-        // how the pipeline will be built
         docker{
                 image 'adoptopenjdk/openjdk11:jdk-11.0.3_7'
                 args '--network ci --mount type=volume,source=ci-maven-home,target=/root/.m2'
@@ -11,7 +10,6 @@ pipeline {
    
 
     environment {
-        // properties or environment variables, new or derived
         ORG_NAME="deors"
         APP_NAME = "workshop-pipelines"
         APP_CONTEXT_ROOT= "/"
@@ -28,9 +26,4 @@ pipeline {
             }
         }
     }
-
-    // post {
-    //     // post-process activities, e.g. cleanup or publish
-    // }
-
 }
