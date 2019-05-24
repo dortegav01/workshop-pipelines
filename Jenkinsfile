@@ -14,7 +14,7 @@ pipeline {
         APP_NAME = "workshop-pipelines"
         APP_CONTEXT_ROOT = "/"
         APP_LISTENING_PORT = "8080"
-        TEST_CONTAINER_NAME ="ci-${APP_NAME}-${BUILD_NUMBER}"
+        TEST_CONTAINER_NAME ="ci-${APP_NAME}-${BUILD_NUMBER}Daniel"
         DOCKER_HUB = credentials("${ORG_NAME}-docker-hub")
     }
 
@@ -45,6 +45,12 @@ pipeline {
                 echo "-=- packaging project -=-"
                 sh "./mvnw package -DskipTests"
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+         stage('Build Docker image') {
+            steps {
+                echo "-=- build Docker image -=-"
+                sh "./mvnw docker:build"
             }
         }
     }
