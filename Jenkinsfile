@@ -8,7 +8,7 @@ pipeline {
                 args '--network ci --mount type=volume,source=ci-maven-home,target=/root/.m2'
                 }
         }
-    }
+   
 
     environment {
         // properties or environment variables, new or derived
@@ -32,4 +32,5 @@ pipeline {
     post {
         // post-process activities, e.g. cleanup or publish
     }
+
 }
