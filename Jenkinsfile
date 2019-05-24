@@ -1,3 +1,5 @@
+#!groovy
+
 pipeline {
     agent {
         // how the pipeline will be built
@@ -14,7 +16,7 @@ pipeline {
         APP_NAME = "workshop-pipelines"
         APP_CONTEXT_ROOT= "/"
         APP_LISTENING_PORT= "8080"
-        TEST_CONTAINER_NAME="ci_$(APP_NAME)-$(BUILD-NUMBER)"
+        TEST_CONTAINER_NAME="ci-${APP_NAME}-${BUILD-NUMBER}"
         DOCKER_HUB= credentials("${ORG_NAME}-docker-hub")
     }
 
@@ -23,14 +25,6 @@ pipeline {
             steps {
                 echo "-=- compiling project -=-"
                 sh "./mvnw clean compile"
-            }
-        }
-
-        ...
-
-        stage('stage-n-name') {
-            steps {
-                // steps for stage n come here
             }
         }
     }
