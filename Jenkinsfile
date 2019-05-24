@@ -34,5 +34,11 @@ pipeline {
                 jacoco execPattern: 'target/jacoco.exec'
             }
         }
+         stage('Mutation tests') {
+            steps {
+                echo "-=- execute mutation tests -=-"
+                sh "./mvnw org.pitest:pitest-maven:mutationCoverage"
+            }
+        }
     }
 }
